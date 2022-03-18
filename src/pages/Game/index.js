@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import { v4 as uuidv4 } from "uuid";
 import "./style.scss";
 
 function Game() {
   const navigate = useNavigate();
-  const [speed, setSpeed] = useState(5000);
+  const [speed, setSpeed] = useState(800);
   const [score, setScore] = useState(0);
   const [gameRestart, setGameRestart] = useState(false);
   const [live, setLive] = useState(3);
+  const [bubbles, setBubbles] = useState([]);
 
   useEffect(() => {
     function getRandomNumber(min, max) {
@@ -27,43 +29,29 @@ function Game() {
       let winHeight = Box.offsetHeight - 100;
 
       bubble.classList.add("bubble");
+      // let myid = uuidv4();
+      // bubble.id = myid;
+      // bubbles.push(myid);
 
       bubble.style.left = getRandomNumber(0, winWidth) + "px";
       bubble.style.top = getRandomNumber(0, winHeight) + "px";
       bubble.style.backgroundColor = MyColor;
       bubble.style.borderColor = MyColor;
+
       Box.appendChild(bubble);
+
+      bubble.addEventListener("click", (e) => {
+        e.target.remove();
+        setScore(score + 1);
+      });
+
+
     };
 
-    setInterval(CreateBubble, 800);
+    setInterval(() => {
+      CreateBubble();
+    }, speed);
   }, []);
-
-  const Bubble = document.querySelectorAll(".bubble");
-
-  const BubbleClick = (e) => {
-    if (e.target.classList.contains("bubble")) {
-      e.target.remove();
-      setScore(score + 1);
-    }
-  };
-
-  const BubbleOut = (e) => {
-    if (e.target.classList.contains("bubble")) {
-      e.target.remove();
-      setLive(live - 1);
-    }
-  };
-
-  const GameOver = () => {
-    if (live === 0) {
-      setGameRestart(true);
-    }
-  };
-
-  Bubble.forEach((bubble) => {
-    bubble.addEventListener("click", BubbleClick);
-    bubble.addEventListener("mouseout", BubbleOut);
-  });
 
   return (
     <section className="game">

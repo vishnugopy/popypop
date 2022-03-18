@@ -2,7 +2,8 @@
   
 
   $maincolor: #00bcd4;
-  $secondecolor: #00bcd4;;
+  $secondecolor: #00454e;
+  $halfmain: #00bbd425;
   
   
   //fonts
@@ -12,6 +13,11 @@
     font-family: "Poppins", sans-serif;
     width: 100vw;
     margin: 0% auto;
+  }
+
+  input{
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
   }
   
   

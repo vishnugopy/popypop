@@ -5,21 +5,17 @@ function Home() {
   const navigate = useNavigate();
   const ChangePage = () => {
     navigate("/game");
-  }
-
+  };
 
   return (
     <section className="home">
-      <div>
-        <h1>Home</h1>
-        <label>
-          <p>insert name</p>
-          <input type="text" placeholder="name pls" />
-        </label>
+      <div className="NameContainer">
+        <h1>Popy Pop</h1>
+        <div>
+          <input type="text" placeholder="Your Name Please" />
+        <button className="startbutton" onClick={ChangePage}>x</button>
+        </div>
 
-        <button>
-          <p onClick={ChangePage}>start</p>
-        </button>
       </div>
     </section>
   );

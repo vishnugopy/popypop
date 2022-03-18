@@ -21,7 +21,7 @@ function Game() {
       Box.appendChild(bubble);
     };
 
-    setInterval(CreateBubble, 1000);
+    //setInterval(CreateBubble, 1000);
   }, []);
 
   return (

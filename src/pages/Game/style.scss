@@ -1,0 +1,20 @@
+.box{
+    padding: 2%;
+    height: 80vh;
+    width: 90vw;
+    margin: 0 auto  ;
+    background: rgb(168, 168, 168);
+
+}
+
+
+.bubble{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #000;
+    box-shadow: 0 0 10px #000;
+    animation: bubble-animation 1s infinite;
+}

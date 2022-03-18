@@ -6,16 +6,23 @@
   width: 95%;
   margin: 0 auto;
   border-radius: 15px;
-  background: $halfmain;
+//   background: $halfmain;
+  //   overflow: hidden;
+  position: relative;
 }
 
 .bubble {
-  position: absolute;
   width: 100px;
   height: 100px;
-  background-color: #fff;
   border-radius: 50%;
-  border: 1px solid #000;
-  box-shadow: 0 0 10px #000;
-  animation: bubble-animation 1s infinite;
+  background: $maincolor;
+  cursor: cell;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+
+    &:hover {
+        transition: all 0.1s ease-in-out;
+        border: 5px solid $secondecolor;
+    }
 }

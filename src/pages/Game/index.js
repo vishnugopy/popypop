@@ -17,45 +17,46 @@ function Game() {
     return "hsla(" + Math.random() * 360 + ", 100%, 50%, 0.5)";
   }
 
-  const CreateBubble = () => {
-    const Box = document.querySelector(".box");
-    const bubble = document.createElement("div");
-    const MyColor = randomHsl();
-    let winWidth = Box.offsetWidth - 100;
-    let winHeight = Box.offsetHeight - 100;
-    bubble.classList.add("bubble");
-    bubble.style.left = getRandomNumber(0, winWidth) + "px";
-    bubble.style.top = getRandomNumber(0, winHeight) + "px";
-    bubble.style.backgroundColor = MyColor;
-    bubble.style.borderColor = MyColor;
-    Box.appendChild(bubble);
-
-    setTimeout(() => {
-      Box.removeChild(bubble);
-      setLive(live - 1);
-    }, 5000);
-
-    bubble.addEventListener("click", () => {
-      bubble.remove();
-    });
-
-    if (live === 0) {
-      alert("Game Over");
-
-      localStorage.setItem("score", score);
-
-      navigate("/");
-    }
-  };
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
+      const CreateBubble = () => {
+        const Box = document.querySelector(".box");
+        const bubble = document.createElement("div");
+        const MyColor = randomHsl();
+        let winWidth = Box.offsetWidth - 100;
+        let winHeight = Box.offsetHeight - 100;
+        bubble.classList.add("bubble");
+        bubble.style.left = getRandomNumber(0, winWidth) + "px";
+        bubble.style.top = getRandomNumber(0, winHeight) + "px";
+        bubble.style.backgroundColor = MyColor;
+        bubble.style.borderColor = MyColor;
+        Box.appendChild(bubble);
+    
+        setTimeout(() => {
+          Box.removeChild(bubble);
+          setLive(live - 1);
+        }, 5000);
+    
+        bubble.addEventListener("click", () => {
+          bubble.remove();
+        });
+    
+        if (live === 0) {
+          alert("Game Over");
+    
+          localStorage.setItem("score", score);
+    
+          navigate("/");
+        }
+      };
       CreateBubble();
     }, speed);
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [speed , live, score, navigate]);
 
   useEffect(() => {
     const Box = document.querySelector(".box");

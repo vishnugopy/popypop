@@ -5,12 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import "./style.scss";
 
 function Game() {
-  const navigate = useNavigate();
   const [speed, setSpeed] = useState(800);
   const [score, setScore] = useState(0);
-  const [gameRestart, setGameRestart] = useState(false);
-  const [live, setLive] = useState(3);
-  const [bubbles, setBubbles] = useState([]);
 
   useEffect(() => {
     function getRandomNumber(min, max) {
@@ -44,14 +40,16 @@ function Game() {
         e.target.remove();
         setScore(score + 1);
       });
-
-
     };
 
     setInterval(() => {
       CreateBubble();
     }, speed);
   }, []);
+
+  if (score === 10) {
+    setSpeed(500);
+  }
 
   return (
     <section className="game">
